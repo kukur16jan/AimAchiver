@@ -18,7 +18,7 @@ export default function MyPeerCommentsPage() {
     if (!user) return;
     const fetchComments = async () => {
       setLoading(true);
-      const res = await fetch(`https://aim-achiever-backend.vercel.app/api/peers/${user.id}/comments`);
+      const res = await fetch(`https://aim-achiever-backend.onrender.com/api/peers/${user.id}/comments`);
       const data = await res.json();
       console.log('Fetched comments:', data);
       setComments(data);

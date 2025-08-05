@@ -28,7 +28,7 @@ const QuickTaskForm = ({ onClose }: QuickTaskFormProps) => {
     setError(null);
     try {
       // Call Gemini microtask API
-      const res = await fetch('https://aim-achiever-backend.vercel.app/api/gemini-microtasks', {
+      const res = await fetch('https://aim-achiever-backend.onrender.com/api/gemini-microtasks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ goal: formData.title, days, description: formData.description })

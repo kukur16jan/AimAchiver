@@ -86,9 +86,9 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
     const fetchData = async () => {
       if (user) {
         const [tasksRes, moodsRes, peersRes] = await Promise.all([
-          fetch(`https://aim-achiever-backend.vercel.app/api/tasks/${user.id}`),
-          fetch(`https://aim-achiever-backend.vercel.app/api/moods/${user.id}`),
-          fetch(`https://aim-achiever-backend.vercel.app/api/peers?userId=${user.id}`)
+          fetch(`https://aim-achiever-backend.onrender.com/api/tasks/${user.id}`),
+          fetch(`https://aim-achiever-backend.onrender.com/api/moods/${user.id}`),
+          fetch(`https://aim-achiever-backend.onrender.com/api/peers?userId=${user.id}`)
         ]);
         const tasksData = await tasksRes.json();
         setTasks(tasksData.map((t: any) => ({ ...t, id: t._id })));
@@ -110,7 +110,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
       userId: user.id,
       createdAt: new Date().toISOString()
     };
-    const res = await fetch('https://aim-achiever-backend.vercel.app/api/tasks', {
+    const res = await fetch('https://aim-achiever-backend.onrender.com/api/tasks', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newTask)
@@ -121,7 +121,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const updateTask = async (id: string, updates: Partial<Task>) => {
-    const res = await fetch(`https://aim-achiever-backend.vercel.app/api/tasks/${id}`, {
+    const res = await fetch(`https://aim-achiever-backend.onrender.com/api/tasks/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updates)
@@ -131,7 +131,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const deleteTask = async (id: string) => {
-    await fetch(`https://aim-achiever-backend.vercel.app/api/tasks/${id}`, { method: 'DELETE' });
+    await fetch(`https://aim-achiever-backend.onrender.com/api/tasks/${id}`, { method: 'DELETE' });
     setTasks(prev => prev.filter(task => task.id !== id));
   };
 
@@ -157,7 +157,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
       status: allCompleted ? 'completed' : task.status,
       completedAt: allCompleted ? new Date().toISOString() : task.completedAt
     };
-    await fetch(`https://aim-achiever-backend.vercel.app/api/tasks/${taskId}`, {
+    await fetch(`https://aim-achiever-backend.onrender.com/api/tasks/${taskId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updatedTask)
@@ -185,7 +185,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
       moodInput: moodData.moodInput || ''
     };
     // Use Gemini-powered endpoint
-    const res = await fetch('https://aim-achiever-backend.vercel.app/api/moods/gemini', {
+    const res = await fetch('https://aim-achiever-backend.onrender.com/api/moods/gemini', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newMood)
@@ -197,22 +197,22 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
 
   // Invite a peer by email
   const invitePeer = async (email: string) => {
-    await fetch(`https://aim-achiever-backend.vercel.app/api/peers/invite`, {
+    await fetch(`https://aim-achiever-backend.onrender.com/api/peers/invite`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ recipientEmail: email, requesterId: user?.id })
     });
     // Refresh peers
-    const res = await fetch(`https://aim-achiever-backend.vercel.app/api/peers?userId=${user?.id}`);
+    const res = await fetch(`https://aim-achiever-backend.onrender.com/api/peers?userId=${user?.id}`);
     const peersData = await res.json();
     setPeers(peersData.map((p: any) => ({ ...p, id: p._id })));
   };
 
   // Remove a peer
   const removePeer = async (peerId: string) => {
-    await fetch(`https://aim-achiever-backend.vercel.app/api/peers/${peerId}?userId=${user?.id}`, { method: 'DELETE' });
+    await fetch(`https://aim-achiever-backend.onrender.com/api/peers/${peerId}?userId=${user?.id}`, { method: 'DELETE' });
     // Refresh peers
-    const res = await fetch('https://aim-achiever-backend.vercel.app/api/peers');
+    const res = await fetch('https://aim-achiever-backend.onrender.com/api/peers');
     const peersData = await res.json();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     setPeers(peersData.map((p: any) => ({ ...p, id: p._id })));
@@ -220,9 +220,9 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
 
   // Accept a peer request (by token)
   const acceptPeer = async (token: string) => {
-    await fetch(`https://aim-achiever-backend.vercel.app/api/peers/accept/${token}?userId=${user?.id}`);
+    await fetch(`https://aim-achiever-backend.onrender.com/api/peers/accept/${token}?userId=${user?.id}`);
     // Refresh peers
-    const res = await fetch('https://aim-achiever-backend.vercel.app/api/peers');
+    const res = await fetch('https://aim-achiever-backend.onrender.com/api/peers');
     const peersData = await res.json();
     setPeers(peersData.map((p: any) => ({ ...p, id: p._id })));
   };

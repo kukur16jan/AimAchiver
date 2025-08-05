@@ -9,7 +9,7 @@ export default function AcceptPeerPage() {
 
   useEffect(() => {
     if (!token) return;
-    fetch(`https://aim-achiever-backend.vercel.app/api/peers/accept/${token}`)
+    fetch(`https://aim-achiever-backend.onrender.com/api/peers/accept/${token}`)
       .then(async res => {
         if (res.redirected) {
           setStatus('success');

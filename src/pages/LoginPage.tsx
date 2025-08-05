@@ -41,7 +41,7 @@ const AuthPage = () => {
     setForgotMsg('');
     setForgotLoading(true);
     try {
-      const res = await fetch('https://aim-achiever-backend.vercel.app/auth/forgot-password', {
+      const res = await fetch('https://aim-achiever-backend.onrender.com/auth/forgot-password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: forgotEmail })
