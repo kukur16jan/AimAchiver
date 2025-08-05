@@ -24,7 +24,7 @@ export default function ResetPasswordPage() {
     }
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:3000/auth/reset-password/${token}`, {
+      const res = await fetch(`https://aim-achiever-backend.vercel.app/auth/reset-password/${token}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password })

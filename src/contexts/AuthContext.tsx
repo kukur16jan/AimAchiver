@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:3000/api/login', {
+      const res = await fetch('https://aim-achiever-backend.vercel.app/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ usernameOrEmail: emailOrUsername, password })
@@ -97,7 +97,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setLoading(true);
     try {
       // Try to get user info from backend (after Google OAuth)
-      const res = await fetch('http://localhost:3000/auth/user', {
+      const res = await fetch('https://aim-achiever-backend.vercel.app/auth/user', {
         credentials: 'include',
       });
       const data = await res.json();
@@ -133,7 +133,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setLoading(true);
     try {
       console.log('Registering user:', email);
-      const res = await fetch('http://localhost:3000/api/signup', {
+      const res = await fetch('https://aim-achiever-backend.vercel.app/api/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: name, email, password })
@@ -180,7 +180,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem('aimAchiever_ai_chat_history');
     // Also call backend logout for Google or session-based logins
     try {
-      await fetch('http://localhost:3000/auth/logout', {
+      await fetch('https://aim-achiever-backend.vercel.app/auth/logout', {
         method: 'GET',
         credentials: 'include',
       });

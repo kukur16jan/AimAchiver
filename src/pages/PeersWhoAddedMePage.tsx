@@ -15,7 +15,7 @@ export default function PeersWhoAddedMePage() {
   useEffect(() => {
     const fetchPeers = async () => {
       setLoading(true);
-      const res = await fetch(`http://localhost:3000/api/peers/who-added-me?userId=${user?.id}`);
+      const res = await fetch(`https://aim-achiever-backend.vercel.app/api/peers/who-added-me?userId=${user?.id}`);
       const data = await res.json();
       setPeers(data || []);
       setLoading(false);

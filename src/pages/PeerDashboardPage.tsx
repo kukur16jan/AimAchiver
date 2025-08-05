@@ -48,10 +48,10 @@ export default function PeerDashboardPage() {
     const fetchData = async () => {
       setLoading(true);
       const [peerRes, tasksRes, moodsRes, commentsRes] = await Promise.all([
-        fetch(`http://localhost:3000/api/peers/user/${peerId}`),
-        fetch(`http://localhost:3000/api/tasks/${peerId}`),
-        fetch(`http://localhost:3000/api/moods/${peerId}`),
-        fetch(`http://localhost:3000/api/peers/${peerId}/comments`)
+        fetch(`https://aim-achiever-backend.vercel.app/api/peers/user/${peerId}`),
+        fetch(`https://aim-achiever-backend.vercel.app/api/tasks/${peerId}`),
+        fetch(`https://aim-achiever-backend.vercel.app/api/moods/${peerId}`),
+        fetch(`https://aim-achiever-backend.vercel.app/api/peers/${peerId}/comments`)
       ]);
       setPeer(await peerRes.json());
       setTasks(await tasksRes.json());
@@ -65,7 +65,7 @@ export default function PeerDashboardPage() {
   const handleComment = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!comment.trim()) return;
-    const res = await fetch(`http://localhost:3000/api/peers/${peerId}/comments`, {
+    const res = await fetch(`https://aim-achiever-backend.vercel.app/api/peers/${peerId}/comments`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text: comment, authorId: user?.id, authorName: user?.name })

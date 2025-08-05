@@ -68,7 +68,7 @@ const AIAssistant = ({ onClose }: { onClose: () => void }) => {
     };
     setChat(prev => [...prev, userMsg]);
     try {
-      const res = await fetch('http://localhost:3000/api/gemini', {
+      const res = await fetch('https://aim-achiever-backend.vercel.app/api/gemini', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question })

@@ -41,7 +41,7 @@ export default function PeerDetailsForRecipientPage() {
       setLoading(true);
       setError('');
       // Check if user is a recipient of peerId's request
-      const allowedRes = await fetch(`http://localhost:3000/api/peers/${peerId}/recipients`);
+      const allowedRes = await fetch(`https://aim-achiever-backend.vercel.app/api/peers/${peerId}/recipients`);
       const allowed = await allowedRes.json();
       if (!Array.isArray(allowed) || !allowed.some((u: any) => u._id === user.id)) {
         setError('You are not allowed to view this user.');
@@ -49,9 +49,9 @@ export default function PeerDetailsForRecipientPage() {
         return;
       }
       const [peerRes, tasksRes, moodsRes] = await Promise.all([
-        fetch(`http://localhost:3000/api/peers/user/${peerId}`),
-        fetch(`http://localhost:3000/api/tasks/${peerId}`),
-        fetch(`http://localhost:3000/api/moods/${peerId}`)
+        fetch(`https://aim-achiever-backend.vercel.app/api/peers/user/${peerId}`),
+        fetch(`https://aim-achiever-backend.vercel.app/api/tasks/${peerId}`),
+        fetch(`https://aim-achiever-backend.vercel.app/api/moods/${peerId}`)
       ]);
       setPeer(await peerRes.json());
       setTasks(await tasksRes.json());
