@@ -256,7 +256,7 @@ const AuthPage = () => {
               <span className="mb-2 text-gray-400">or</span>
               <button
                 type="button"
-                onClick={() => window.location.href = 'https://aim-achiver-lovat.vercel.app/auth/google'}
+                onClick={() => window.location.href = 'https://aim-achiever-backend.onrender.com/auth/google'}
                 className="flex items-center gap-2 px-4 py-2 transition-all bg-white border border-gray-300 rounded-lg shadow hover:bg-gray-50"
               >
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/480px-Google_%22G%22_logo.svg.png" alt="Google" className="w-5 h-5" />
