@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useData } from '../../contexts/DataContext';
 import { X, Target, Calendar, AlertCircle } from 'lucide-react';
 import { Task, Microtask } from '../../contexts/DataContext';
+import Spinner from '../Spinner';
 
 interface QuickTaskFormProps {
   onClose: () => void;
@@ -65,7 +66,7 @@ const QuickTaskForm = ({ onClose }: QuickTaskFormProps) => {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <Target className="w-6 h-6" />
-              <h2 className="text-xl font-semibold">Create New Goal</h2>
+              <h2 className="text-xl font-semibold">{loading?"Creating":"Create"} New Goal</h2>
             </div>
             <button
               onClick={onClose}
@@ -76,7 +77,7 @@ const QuickTaskForm = ({ onClose }: QuickTaskFormProps) => {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 overflow-y-auto max-h-[calc(90vh-88px)]">
+        {loading?<Spinner/>:<form onSubmit={handleSubmit} className="p-6 overflow-y-auto max-h-[calc(90vh-88px)]">
           {/* Basic Info */}
           <div className="space-y-6">
             <div>
@@ -191,7 +192,7 @@ const QuickTaskForm = ({ onClose }: QuickTaskFormProps) => {
               {loading ? 'Creating...' : 'Create Goal'}
             </button>
           </div>
-        </form>
+        </form>}
       </div>
     </div>
   );

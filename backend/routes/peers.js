@@ -102,9 +102,11 @@ router.get('/who-added-me', async (req, res) => {
   const userId = req.query.userId;
   if (!userId) return res.status(400).json({ message: 'Missing userId' });
   try {
+     console.log("Before fetching requests:", userId);
     // Find all PeerRequests where recipient is userId and status is accepted
     const requests = await PeerRequest.find({ recipient: userId, status: 'accepted' }).populate('requester', 'name email');
     // Return the requester users
+    console.log("After fetching requests:", requests);
     const users = requests.map(r => r.requester);
     res.json(users);
   } catch (err) {

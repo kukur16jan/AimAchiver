@@ -26,8 +26,8 @@ export default function TasksPage() {
   const [selectedTask, setSelectedTask] = useState<null | string>(null);
 
   const filteredTasks = tasks.filter(task => {
-    const matchesSearch = task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         task.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = task?.title?.toLowerCase().includes(searchTerm?.toLowerCase()) ||
+                         task?.description?.toLowerCase().includes(searchTerm?.toLowerCase());
     const matchesFilter = filterStatus === 'all' || task.status === filterStatus;
     return matchesSearch && matchesFilter;
   });

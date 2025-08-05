@@ -11,6 +11,10 @@ node_modules
 dist
 dist-ssr
 *.local
+/backend
+
+/backend/routes/peers.js
+/backend/server.js
 
 # Editor directories and files
 .vscode/*

@@ -268,7 +268,7 @@ app.post('/api/signup', async (req, res) => {
     const user = new User({ username, email, password });
     console.log('Creating new user:', username, email);
     await user.save();
-    res.status(201).json({ message: 'User created successfully' });
+    res.status(201).json({ message: 'User created successfully' ,user: { username: user.username, email: user.email, id: user._id }});
   } catch (err) {
     console.error('Error creating user:', err);
     res.status(400).json({ error: 'User already exists or invalid data' });
